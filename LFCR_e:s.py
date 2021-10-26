@@ -3,22 +3,24 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Simulation parameters
-p = ct.one_atm  # pressure [Pa]
-Tin = 300.0  # unburned gas temperature [K]
-phi = 0.9
-
-width = 0.1  # m
+p = 1e6  # pressure [Pa]
+Tin = 600.0  # unburned gas temperature [K]
+phi = 1
+width = 0.03
+ethanolRatioArray = []
+flameSpeedArray = []
 
 # IdealGasMix object used to compute mixture properties
-gas = ct.Solution('gri30.xml', 'gri30_mix')
+gas = ct.Solution('SIPgr200mech.cti')
 gas.TP = Tin, p
-gas.set_equivalence_ratio(phi, 'CH4', 'O2:1.0, N2:3.76')
+gas.set_equivalence_ratio(phi, 'nC7H16: 23.825, iC8H18:19.903, C6H5CH3:38.83, cC7H14:5.317, eC8H16:12.125, C2H5OH:25', 'O2:1.0, N2:3.76')
 
 # Flame object
-f = ct.FreeFlame(gas, grid = [0, 1])
+f = ct.FreeFlame(gas, width = width)
 f.set_refine_criteria(ratio=3, slope=0.07, curve=0.14)
 
 f.solve(loglevel=1, auto=True)
+
 print('\nmixture-averaged flamespeed = {:7f} m/s\n'.format(f.u[0]))
 
 plt.figure('Fig.1')
