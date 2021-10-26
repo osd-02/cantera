@@ -40,7 +40,7 @@ for ratio in range(0, 101, 5):
   flameSpeedArray.append(f.velocity[0] * 100)
 
   print("-----------------------------------------------------------------------------------")
-  print("now ethanolRatio : " + str(pushRate))
+  print("calculated ethanolRatio : " + str(pushRate))
   print("-----------------------------------------------------------------------------------")
 
 plt.figure('ethanol:salogate LaminarFlowCombustionRate')
