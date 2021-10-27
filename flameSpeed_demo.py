@@ -23,7 +23,7 @@ print('\nmixture-averaged flamespeed = {:7f} m/s\n'.format(f.u[0]))
 
 plt.figure('Fig.1')
 plt.subplot(2,1,1)
-plt.plot(f.grid, f.T)
+plt.plot(f.grid, f.p)
 plt.xlabel('Axial distance [m]')
 plt.ylabel('Temperature [K]')
 plt.grid(True)
