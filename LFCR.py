@@ -11,11 +11,11 @@ ethanolRatioArray = []
 flameSpeedArray = []
 
 fuelSalogate = {"nC7H16":23.825, "iC8H18":19.903, "C6H5CH3":38.83, "cC7H14":5.317, "eC8H16":12.125}
-fuelEthanol = {"C2H5OH":100}
+fuelEthanol = {"CH3OH":100}
 
 for ratio in [50]:
   # IdealGasMix object used to compute mixture properties
-  gas = ct.Solution('SIPgr200mech.cti')
+  gas = ct.Solution('SIP-Gd201-s5.cti')
   gas.TP = Tin, p
 
   # 燃料の定義文字列の設定
@@ -23,8 +23,8 @@ for ratio in [50]:
   for k in fuelSalogate.keys():
     pushRate = str(round(fuelSalogate[k] * (1 - ratio * 0.01), 3))
     fuelStr = fuelStr + k + ":" + pushRate + ", "
-  pushRate = round(ratio * 0.01 * fuelEthanol["C2H5OH"], 3)
-  fuelStr = fuelStr + "C2H5OH" + ":" + str(pushRate)
+  pushRate = round(ratio * 0.01 * fuelEthanol["CH3OH"], 3)
+  fuelStr = fuelStr + "CH3OH" + ":" + str(pushRate)
 
   # 設定
   gas.set_equivalence_ratio(phi, fuelStr, 'O2:1.0, N2:3.76')
