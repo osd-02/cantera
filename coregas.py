@@ -21,7 +21,7 @@ p_out = 1.0e5 # [Pa]
 c_out = 'O2:1.0, N2:3.76'
 
 # Reaction mechanism name
-reaction_mechanism = 'SIPgr200mech.cti'
+reaction_mechanism = 'SIP-Gd201-s5.cti'
 
 # load reaction mechanism
 gas = ct.Solution(reaction_mechanism)
@@ -62,13 +62,13 @@ csvfile.writerow(['P[bar]','T[K]'])
 
 # do simulation
 for t_i in np.arange(0, 500, 0.001):
-    if r.thermo.P < 1.0e7:
-        sim.advance(t_i)
+    # if r.thermo.P < 1.0e7:
+    sim.advance(t_i)
 
-        # write output data
-        states.append(r.thermo.state)
+    # write output data
+    states.append(r.thermo.state)
 
-        csvfile.writerow([r.thermo.P / 1.0e5, r.T])
+    csvfile.writerow([r.thermo.P / 1.0e5, r.T])
 
 
 outfile.close()
@@ -78,10 +78,13 @@ outfile.close()
 import matplotlib.pyplot as plt
 
 # temperature, Pressure
-scatter = plt.scatter(states.P / 1.0e5, states.T)
+# scatter = plt.scatter(states.P / 1.0e5, states.T)
 plot = plt.figure()
 ax2 = plot.add_subplot()
 ax2.plot(states.P / 1.0e5, states.T)
+plt.xscale("log")
+plt.grid(which = "both", axis = "both", color = "black", alpha = 0.5,
+        linestyle = "-", linewidth = 0.3)
 ax2.set_ylabel('T [K]')
 ax2.set_xlabel('P [bar]')
 
