@@ -21,14 +21,14 @@ p_out = 1.0e5 # [Pa]
 c_out = 'O2:1.0, N2:3.76'
 
 # Reaction mechanism name
-reaction_mechanism = 'SIP-Gd201-s5.cti'
+reaction_mechanism = 'SIPgr200mech.cti'
 
 # load reaction mechanism
 gas = ct.Solution(reaction_mechanism)
 
 # define initial state
 # salogate:N2 = 80:20
-fuelSalogate = {"nC7H16":23.825, "iC8H18":19.903, "C6H5CH3":38.83, "cC7H14":5.317, "eC8H16":12.125, "N2":400}
+fuelSalogate = {"nC7H16":23.825, "iC8H18":19.903, "C6H5CH3":38.83, "cC7H14":5.317, "eC8H16":12.125, "N2":5053.52}
 gas.TPX = T_ini, p_ini, fuelSalogate
 
 #set solution
