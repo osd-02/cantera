@@ -6,6 +6,10 @@ import cantera as ct
 import numpy as np
 import csv
 
+# write data name
+
+name = "coregas_methanol:100%"
+
 # define bore, initial stroke
 bore = 1000  # bore diameter [mm]
 stroke = 501 # stroke [mm]
@@ -21,14 +25,16 @@ p_out = 1.0e5 # [Pa]
 c_out = 'O2:1.0, N2:3.76'
 
 # Reaction mechanism name
-reaction_mechanism = 'SIPgr200mech.cti'
+reaction_mechanism = 'SIP-Gd201-s5_chem.cti'
 
 # load reaction mechanism
 gas = ct.Solution(reaction_mechanism)
 
 # define initial state
-# salogate:N2 = 80:20
-fuelSalogate = {"nC7H16":23.825, "iC8H18":19.903, "C6H5CH3":38.83, "cC7H14":5.317, "eC8H16":12.125, "N2":5053.52}
+
+# fuelSalogate = {"nC7H16":23.825, "iC8H18":19.903, "C6H5CH3":38.83, "cC7H14":5.317, "eC8H16":12.125, "N2":5053.52}
+fuelSalogate = {"CH3OH":100, "N2":5010.11}
+
 gas.TPX = T_ini, p_ini, fuelSalogate
 
 #set solution
@@ -56,7 +62,7 @@ t = []
 heat_release_rate = []
 
 # output file
-outfile = open('ic_engine.csv', 'w', newline="")
+outfile = open('{}.csv'.format(name), 'w', newline="")
 csvfile = csv.writer(outfile)
 csvfile.writerow(['P[bar]','T[K]'])
 
@@ -82,6 +88,7 @@ import matplotlib.pyplot as plt
 plot = plt.figure()
 ax2 = plot.add_subplot()
 ax2.plot(states.P / 1.0e5, states.T)
+plt.title(name)
 plt.xscale("log")
 plt.grid(which = "both", axis = "both", color = "black", alpha = 0.5,
         linestyle = "-", linewidth = 0.3)
