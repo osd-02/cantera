@@ -13,9 +13,9 @@ flameSpeedArray = []
 fuelSalogate = {"nC7H16":23.825, "iC8H18":19.903, "C6H5CH3":38.83, "cC7H14":5.317, "eC8H16":12.125}
 fuelMethanol = {"CH3OH":100}
 
-for ratio in np.arange(0, 100, 10):
+for ratio in np.arange(0, 100, 1):
   # IdealGasMix object used to compute mixture properties
-  gas = ct.Solution('SIP-Gd201-s5_chem.cti')
+  gas = ct.Solution('SIPgr200mech.cti')
   gas.TP = Tin, p
 
   # 燃料の定義文字列の設定
