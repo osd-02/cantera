@@ -8,7 +8,7 @@ import csv
 
 # write data name
 
-name = "coregas_methanol:100%"
+name = "coregas_salogate:100%"
 
 # define bore, initial stroke
 bore = 1000  # bore diameter [mm]
@@ -25,15 +25,15 @@ p_out = 1.0e5 # [Pa]
 c_out = 'O2:1.0, N2:3.76'
 
 # Reaction mechanism name
-reaction_mechanism = 'gri30.cti'
+reaction_mechanism = 'SIPgr200mech.cti'
 
 # load reaction mechanism
 gas = ct.Solution(reaction_mechanism)
 
 # define initial state
 
-# fuelSalogate = {"nC7H16":23.825, "iC8H18":19.903, "C6H5CH3":38.83, "cC7H14":5.317, "eC8H16":12.125, "N2":5053.52}
-fuelSalogate = {"CH3OH":100, "N2":714}
+fuelSalogate = {"nC7H16":23.825, "iC8H18":19.903, "C6H5CH3":38.83, "cC7H14":5.317, "eC8H16":12.125, "N2":5053.52}
+# fuelSalogate = {"CH3OH":100, "N2":714}
 
 gas.TPX = T_ini, p_ini, fuelSalogate
 

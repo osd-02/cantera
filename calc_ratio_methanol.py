@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # Simulation parameters
 p = ct.one_atm  # pressure [Pa]
 Tin = 300.0  # unburned gas temperature [K]
-phi = 2
+phi = 1
 width = 0.03
 ethanolRatioArray = []
 flameSpeedArray = []
@@ -21,10 +21,10 @@ fuelStr = {"CH3OH":100}
 # pushRate = round(ratio * 0.01 * fuelEthanol["CH3OH"], 3)
 # fuelStr = fuelStr + "CH3OH" + ":" + str(pushRate)
 
-gas = ct.Solution('gri30.cti')
+gas = ct.Solution('SIPgr200mech.cti')
 gas.TP = Tin, p
 
-gas.set_equivalence_ratio(phi, fuelStr, 'O2:1.0, N2:3.76')
+gas.set_equivalence_ratio(phi, fuelSalogate, 'O2:1.0, N2:3.76')
 
 diluent = gas.X[gas.species_index('O2')] + gas.X[gas.species_index('N2')]
 fuel = 1 - diluent
