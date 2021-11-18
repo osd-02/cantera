@@ -10,15 +10,15 @@ width = 0.05
 methanolRatioArray = []
 flameSpeedArray = []
 
-name = "flamespeed_methanol:100%"
+name = "flamespeed_salogate:100%"
 
 ratio = 1
 
-# fuelSalogate = {"nC7H16":23.825, "iC8H18":19.903, "C6H5CH3":38.83, "cC7H14":5.317, "eC8H16":12.125}
-fuelMethanol = {"CH3OH":100}
+fuelSalogate = {"nC7H16":23.825, "iC8H18":19.903, "C6H5CH3":38.83, "cC7H14":5.317, "eC8H16":12.125}
+# fuelMethanol = {"CH3OH":100}
 
 # IdealGasMix object used to compute mixture properties
-gas = ct.Solution('gri30.cti')
+gas = ct.Solution('SIPgr200mech.cti')
 gas.TP = Tin, p
 
 # 燃料の定義文字列の設定
@@ -30,7 +30,7 @@ gas.TP = Tin, p
 # fuelStr = fuelStr + "C2H5OH" + ":" + str(pushRate)
 
 # 設定
-gas.set_equivalence_ratio(phi, fuelMethanol, 'O2:1.0, N2:3.76')
+gas.set_equivalence_ratio(phi, fuelSalogate, 'O2:1.0, N2:3.76')
 
 # Flame object
 f = ct.FreeFlame(gas, width = width)
